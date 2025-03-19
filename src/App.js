@@ -1,23 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
 
 function App() {
+  const [pets, setPets] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("https://my-pet-worker.sam-barber.workers.dev/")
+      .then((response) => response.json())
+      .then((data) => {
+        setPets(data.results); // Update state with fetched data
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching pets:", error);
+        setLoading(false);
+      });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ textAlign: "center", padding: "20px" }}>
+      <h1>My Pet List</h1>
+      {loading ? (
+        <p>Loading pets...</p>
+      ) : (
+        <table border="1" style={{ margin: "0 auto", width: "50%" }}>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Gender</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pets.length > 0 ? (
+              pets.map((pet) => (
+                <tr key={pet.pet_id}>
+                  <td>{pet.pet_id}</td>
+                  <td>{pet.pet_name}</td>
+                  <td>{pet.pet_type}</td>
+                  <td>{pet.pet_gender}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="4">No pets found</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 }
