@@ -5,7 +5,7 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("???")
+    fetch("https://my-pet-worker.sam-barber.workers.dev/")
       .then((response) => response.json())
       .then((data) => {
         setPets(data.results); // Update state with fetched data
