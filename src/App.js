@@ -18,9 +18,9 @@ function App() {
   }, []);
 
   return (
-    <div style={{ textAlign: "center", padding: "20px" }}>
-      <h1>My Pet List</h1>
-      <p>Hi Everyone and welcome to my pets page!</p>
+    <div style={{ textAlign: "center", padding: "20px", backgroundColor: "white", fontFamily: "Arial" }}>
+      <h1>My Pet History</h1>
+      <p>Hi Everyone and welcome to my pets page! This is a list of all my pets.</p>
       {loading ? (
         <p>Loading pets...</p>
       ) : (
