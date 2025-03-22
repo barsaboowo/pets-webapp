@@ -20,6 +20,7 @@ function App() {
   return (
     <div style={{ textAlign: "center", padding: "20px" }}>
       <h1>My Pet List</h1>
+      <p>Hi Everyone and welcome to my pets page!</p>
       {loading ? (
         <p>Loading pets...</p>
       ) : (
@@ -30,6 +31,7 @@ function App() {
               <th>Name</th>
               <th>Type</th>
               <th>Gender</th>
+              <th>Image</th>
             </tr>
           </thead>
           <tbody>
@@ -40,6 +42,7 @@ function App() {
                   <td>{pet.pet_name}</td>
                   <td>{pet.pet_type}</td>
                   <td>{pet.pet_gender}</td>
+                  <td><img src={pet.pet_image}></img></td>
                 </tr>
               ))
             ) : (
