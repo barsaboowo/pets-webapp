@@ -42,7 +42,7 @@ function App() {
                   <td>{pet.pet_name}</td>
                   <td>{pet.pet_type}</td>
                   <td>{pet.pet_gender}</td>
-                  <td><img src={pet.pet_image}></img></td>
+                  <td><img src={pet.pet_image} alt="my pet"></img></td>
                 </tr>
               ))
             ) : (
